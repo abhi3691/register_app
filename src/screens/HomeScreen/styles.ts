@@ -6,7 +6,6 @@ const styles = StyleSheet.create({
   container: {
     height: ScreenRatio.height,
     width: ScreenRatio.width,
-    padding: ScreenRatio.width / 10,
     backgroundColor: colors.bgColor,
   },
 });

@@ -3,7 +3,7 @@ import SQLite from 'react-native-sqlite-storage';
 const DB_NAME = 'register.db';
 
 type callBackType = (value: dataProps) => void;
-type allCallBackType = (e: studentprops[]) => void;
+type allCallBackType = (e: dataProps[]) => void;
 interface props extends dataProps {
   callback: callBackType;
 }
@@ -63,7 +63,7 @@ const updateStudentDB = ({id, name, age, gender, callback}: props) => {
         tx.executeSql(
           'UPDATE students SET name = ?, age = ?, gender = ? WHERE id = ?',
           [name, age, gender, id],
-          (_, result) => {
+          _ => {
             tx.executeSql(
               'SELECT * FROM students WHERE id = ?',
               [id],
@@ -96,7 +96,7 @@ const deleteStudentDB = (id: number, callback: callBackType) => {
             tx.executeSql(
               'DELETE FROM students WHERE id = ?',
               [id],
-              (_, result) => {
+              _ => {
                 callback(deletedStudent);
               },
               (_, error) => console.error('Error deleting student', error),

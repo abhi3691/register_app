@@ -13,6 +13,10 @@ const styles = StyleSheet.create({
     fontSize: RFValue(14),
     color: colors.gray,
   },
+  emptyContainer: {
+    height: ScreenRatio.height / 20,
+    width: ScreenRatio.width / 1.1,
+  },
 });
 
 export default styles;

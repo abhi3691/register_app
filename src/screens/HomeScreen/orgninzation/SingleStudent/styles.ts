@@ -10,6 +10,9 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     height: ScreenRatio.height / 20,
     width: ScreenRatio.width / 1.1,
+    borderBottomWidth: 0.5,
+    borderBottomColor: colors.gray,
+    marginVertical: 10,
   },
   rightLineBox: {
     height: ScreenRatio.height / 20,

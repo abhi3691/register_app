@@ -11,6 +11,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.black,
     height: ScreenRatio.height / 20,
     borderRadius: 8,
+    width: ScreenRatio.width / 1.1,
   },
   rightLineBox: {
     height: ScreenRatio.height / 20,
