@@ -5,6 +5,9 @@ import styles from './styles';
 const StudentsListHeader = () => {
   return (
     <View style={styles.container}>
+      <View style={[styles.sl, styles.rightLineBox]}>
+        <Text style={styles.title}>SL</Text>
+      </View>
       <View style={[styles.name, styles.rightLineBox]}>
         <Text style={styles.title}>Name</Text>
       </View>

@@ -7,6 +7,7 @@ import SingleStudent from '../../orgninzation/SingleStudent';
 import styles from './styles';
 import StudentsListHeader from '../../molecules/students_list_titile';
 import deleteStudent from '../../api_hooks/delete_student /deleteStudent';
+import {getAllStudentsDB} from '../../functions/db_oprations/dbOprations';
 
 const StudentsList = () => {
   const recyclerRef = useRef<SimpleRecycler>(null);
@@ -16,7 +17,13 @@ const StudentsList = () => {
   }, []);
 
   const loadData = () => {
-    recyclerRef.current?.loadDataFromApi([]);
+    getAllStudentsDB(e => {
+      if (e.length) {
+        recyclerRef.current?.loadDataFromApi(e);
+      } else {
+        recyclerRef.current?.loadDataFromApi([]);
+      }
+    });
   };
 
   const deleteUser = async () => {

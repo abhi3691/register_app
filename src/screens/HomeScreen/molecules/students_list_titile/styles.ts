@@ -19,6 +19,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  sl: {
+    flex: 0.5,
+  },
   age: {
     flex: 1,
   },

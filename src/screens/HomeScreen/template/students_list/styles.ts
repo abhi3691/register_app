@@ -7,6 +7,7 @@ const styles = StyleSheet.create({
   container: {
     marginVertical: ScreenRatio.height / 30,
     padding: 20,
+    flex: 1,
   },
   emptyText: {
     fontSize: RFValue(14),
