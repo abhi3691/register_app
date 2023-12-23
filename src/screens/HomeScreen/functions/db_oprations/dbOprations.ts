@@ -18,7 +18,7 @@ const createDb = () => {
   // Create a table example
   db.transaction(tx => {
     tx.executeSql(
-      'CREATE TABLE IF NOT EXISTS students (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, age INTEGER, gender TEXT)',
+      'CREATE TABLE IF NOT EXISTS students (id INTEGER PRIMARY KEY , name TEXT, age INTEGER, gender TEXT)',
       [],
       () => console.log('Table created successfully'),
       (_, error) => console.error('Error creating table', error),
@@ -32,7 +32,7 @@ const createStudentDB = ({name, age, gender, callback}: props) => {
     db => {
       db.transaction(tx => {
         tx.executeSql(
-          'INSERT INTO students (name, age, gender) VALUES (?, ?, ?)',
+          'INSERT INTO students (id,name, age, gender) VALUES (?,?, ?, ?)',
           [name, age, gender],
           (_, result) => {
             const lastInsertRowId = result.insertId;

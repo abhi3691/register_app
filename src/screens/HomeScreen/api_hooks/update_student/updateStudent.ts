@@ -3,6 +3,7 @@ import {BaseUrl} from '../../../../../staging';
 import {updateStudentDB} from '../../functions/db_oprations/dbOprations';
 
 const updateStudent = async (id: number, data: studentprops) => {
+  console.log('data', id, data);
   let response = false;
   try {
     let res = await axios.put(`${BaseUrl}/update/${id}`, data, {
