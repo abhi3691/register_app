@@ -7,6 +7,7 @@ import React, {
   useState,
 } from 'react';
 import styles from './styles';
+import colors from '../../../../components/constants/colors';
 
 export interface InputRefProps {
   showError: (value: string) => void;
@@ -34,7 +35,12 @@ const Input = forwardRef<InputRefProps, TextInputProps>((props, ref) => {
   return (
     <Fragment>
       <View style={styles.container}>
-        <TextInput {...props} ref={textRef} />
+        <TextInput
+          placeholderTextColor={colors.gray}
+          style={styles.input}
+          {...props}
+          ref={textRef}
+        />
       </View>
       {error && <Text style={styles.errorText}>{error}</Text>}
     </Fragment>

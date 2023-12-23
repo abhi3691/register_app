@@ -5,10 +5,8 @@ import colors from '../../../../components/constants/colors';
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between',
-    height: ScreenRatio.height / 20,
+    height: ScreenRatio.height / 8,
     width: ScreenRatio.width / 1.1,
     borderBottomWidth: 0.5,
     borderBottomColor: colors.gray,
@@ -36,6 +34,14 @@ const styles = StyleSheet.create({
   title: {
     fontSize: RFValue(10),
     color: colors.black,
+  },
+  row: {
+    flexDirection: 'row',
+  },
+  rightContainer: {
+    height: ScreenRatio.height / 20,
+    width: ScreenRatio.width / 1.1,
+    alignItems: 'flex-end',
   },
 });
 

@@ -26,8 +26,7 @@ const StudentsList = () => {
   const loadData = () => {
     getAllStudentsDB(e => {
       if (e.length) {
-        const data = e.map(item => ({...item, opened: false}));
-        recyclerRef.current?.loadDataFromApi(data);
+        recyclerRef.current?.loadDataFromApi(e);
       } else {
         recyclerRef.current?.loadDataFromApi([]);
       }
@@ -44,26 +43,6 @@ const StudentsList = () => {
     }
   }, []);
 
-  const onCompleteOpen = useCallback((itemIndex: number) => {
-    const dataList = recyclerRef.current?.state.dataList;
-
-    dataList?.map((item, index) => {
-      if (itemIndex === index) {
-        item.item.openend = true;
-      } else {
-        item.item.openend = false;
-      }
-    });
-    if (dataList) {
-      recyclerRef.current?.setState({dataList: dataList});
-      recyclerRef.current?.setState({
-        list: new DataProvider((r1, r2) => r1 !== r2).cloneWithRows(
-          recyclerRef.current?.state.dataList,
-        ),
-      });
-    }
-  }, []);
-
   // render item
   const rowRenderer = (
     _type: string | number,
@@ -75,7 +54,6 @@ const StudentsList = () => {
       index={index}
       item={data?.item}
       deleteStudent={deleteStudentFn}
-      onCompleteOpen={onCompleteOpen}
     />
   );
 

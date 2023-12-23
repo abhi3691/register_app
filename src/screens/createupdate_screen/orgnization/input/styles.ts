@@ -11,12 +11,15 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     borderColor: colors.gray,
     justifyContent: 'center',
-    padding: 10,
+    paddingHorizontal: 10,
     marginVertical: 10,
   },
   errorText: {
     fontSize: RFValue(12),
     color: colors.red,
+  },
+  input: {
+    color: colors.black,
   },
 });
 export default styles;

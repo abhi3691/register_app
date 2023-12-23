@@ -18,15 +18,9 @@ interface props {
   item: itemProps;
   index: number;
   deleteStudent: (id: number, index: number) => void;
-  onCompleteOpen: (index: number) => void;
 }
 
-const SingleStudent: FC<props> = ({
-  item,
-  index,
-  deleteStudent,
-  onCompleteOpen,
-}) => {
+const SingleStudent: FC<props> = ({item, index, deleteStudent}) => {
   const SwipeableRef = useRef<Swipeable>(null);
   const navigation: NavigationProp<ParamListBase> = useNavigation();
   useEffect(() => {
@@ -45,21 +39,9 @@ const SingleStudent: FC<props> = ({
     [navigation],
   );
 
-  const renderRightActionsFUnction = useCallback(() => {
-    return (
-      <RenderLeftActions
-        deleteStudent={() => deleteStudent(item.id, index)}
-        updateStudent={() => updateStudent(item)}
-      />
-    );
-  }, [deleteStudent, item, index, updateStudent]);
-
   return (
-    <Swipeable
-      renderRightActions={renderRightActionsFUnction}
-      onSwipeableOpen={() => onCompleteOpen(index)}
-      ref={SwipeableRef}>
-      <View style={styles.container}>
+    <View style={styles.container}>
+      <View style={styles.row}>
         <View style={[styles.sl, styles.rightLineBox]}>
           <Text style={styles.title}>{index + 1}</Text>
         </View>
@@ -73,7 +55,13 @@ const SingleStudent: FC<props> = ({
           <Text style={styles.title}>{item.gender}</Text>
         </View>
       </View>
-    </Swipeable>
+      <View style={styles.rightContainer}>
+        <RenderLeftActions
+          deleteStudent={() => deleteStudent(item.id, index)}
+          updateStudent={() => updateStudent(item)}
+        />
+      </View>
+    </View>
   );
 };
 
