@@ -1,4 +1,4 @@
-import {View, TextInputProps, TextInput} from 'react-native';
+import {View, TextInputProps, TextInput, Text} from 'react-native';
 import React, {
   Fragment,
   forwardRef,
@@ -7,7 +7,6 @@ import React, {
   useState,
 } from 'react';
 import styles from './styles';
-import Animated, {FadeInLeft, FadeOutLeft} from 'react-native-reanimated';
 
 export interface InputRefProps {
   showError: (value: string) => void;
@@ -37,14 +36,7 @@ const Input = forwardRef<InputRefProps, TextInputProps>((props, ref) => {
       <View style={styles.container}>
         <TextInput {...props} ref={textRef} />
       </View>
-      {error && (
-        <Animated.Text
-          style={styles.errorText}
-          entering={FadeInLeft.duration(500)}
-          exiting={FadeOutLeft.duration(500)}>
-          {error}
-        </Animated.Text>
-      )}
+      {error && <Text style={styles.errorText}>{error}</Text>}
     </Fragment>
   );
 });
