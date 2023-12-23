@@ -18,7 +18,7 @@ const createDb = () => {
   // Create a table example
   db.transaction(tx => {
     tx.executeSql(
-      'CREATE TABLE IF NOT EXISTS students (id INTEGER PRIMARY KEY , name TEXT, age INTEGER, gender TEXT)',
+      'CREATE TABLE IF NOT EXISTS students (sl INTEGER PRIMARY KEY , id INTEGER, name TEXT, age INTEGER, gender TEXT)',
       [],
       () => console.log('Table created successfully'),
       (_, error) => console.error('Error creating table', error),
@@ -26,14 +26,14 @@ const createDb = () => {
   });
 };
 
-const createStudentDB = ({name, age, gender, callback}: props) => {
+const createStudentDB = ({id, name, age, gender, callback}: props) => {
   SQLite.openDatabase(
     {name: DB_NAME, location: 'default'},
     db => {
       db.transaction(tx => {
         tx.executeSql(
-          'INSERT INTO students (id,name, age, gender) VALUES (?,?, ?, ?)',
-          [name, age, gender],
+          'INSERT INTO students (id , name, age, gender) VALUES (?,?, ?, ?)',
+          [id, name, age, gender],
           (_, result) => {
             const lastInsertRowId = result.insertId;
             tx.executeSql(
