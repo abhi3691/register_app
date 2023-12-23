@@ -13,13 +13,6 @@ const CreateButton = () => {
   const navigation: NavigationProp<ParamListBase> = useNavigation();
   const createUser = async () => {
     navigation.navigate('CreateUpdateScreen', {type: 'Create'});
-    // let data: studentprops = {
-    //   age: 25,
-    //   name: 'ABHINAND',
-    //   gender: 'male',
-    // };
-    // let response = await createStudent(data);
-    // console.log('response', response);
   };
 
   return (

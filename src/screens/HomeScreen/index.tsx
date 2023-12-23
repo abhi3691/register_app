@@ -3,14 +3,12 @@ import React, {useLayoutEffect} from 'react';
 import styles from './styles';
 import StudentsList from './template/students_list';
 import {createDb} from './functions/db_oprations/dbOprations';
-import {useIsFocused} from '@react-navigation/native';
 import CreateButton from './orgninzation/CreateButton';
 
 const HomeScreen = () => {
-  const isFocused = useIsFocused();
   useLayoutEffect(() => {
     createDb();
-  }, [isFocused]);
+  }, []);
 
   return (
     <SafeAreaView style={styles.container}>

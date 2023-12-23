@@ -1,20 +1,21 @@
 import {View} from 'react-native';
 import React, {useCallback, useLayoutEffect, useRef} from 'react';
-import {SimpleRecycler} from 'react-native-simple-recyclerlistview';
+import {
+  DataProvider,
+  SimpleRecycler,
+} from 'react-native-simple-recyclerlistview';
 import ScreenRatio from '../../../../components/constants/ScreenRatio';
 import colors from '../../../../components/constants/colors';
-import SingleStudent, {
-  SingleStudentRefProps,
-} from '../../orgninzation/SingleStudent';
+import SingleStudent from '../../orgninzation/SingleStudent';
 import styles from './styles';
 import StudentsListHeader from '../../molecules/students_list_titile';
 import deleteStudent from '../../api_hooks/delete_student /deleteStudent';
 import {getAllStudentsDB} from '../../functions/db_oprations/dbOprations';
 import {useIsFocused} from '@react-navigation/native';
+import Toast from 'react-native-simple-toast';
 
 const StudentsList = () => {
   const recyclerRef = useRef<SimpleRecycler>(null);
-  const SingleStudentRef = useRef<SingleStudentRefProps>(null);
   const isFocused = useIsFocused();
   useLayoutEffect(() => {
     if (isFocused) {
@@ -25,7 +26,8 @@ const StudentsList = () => {
   const loadData = () => {
     getAllStudentsDB(e => {
       if (e.length) {
-        recyclerRef.current?.loadDataFromApi(e);
+        const data = e.map(item => ({...item, opened: false}));
+        recyclerRef.current?.loadDataFromApi(data);
       } else {
         recyclerRef.current?.loadDataFromApi([]);
       }
@@ -36,13 +38,32 @@ const StudentsList = () => {
     let response = await deleteStudent(id);
     if (response) {
       recyclerRef.current?.SpliceData(index);
-      setTimeout(() => {
-        SingleStudentRef.current?.closeSwipable();
-      }, 100);
+      Toast.show('Delete Successuflly', Toast.LONG);
+    } else {
+      Toast.show('Delete Failed', Toast.LONG);
     }
   }, []);
 
-  const updateStudent = async () => {};
+  const onCompleteOpen = useCallback((itemIndex: number) => {
+    const dataList = recyclerRef.current?.state.dataList;
+
+    dataList?.map((item, index) => {
+      if (itemIndex === index) {
+        item.item.openend = true;
+      } else {
+        item.item.openend = false;
+      }
+    });
+    if (dataList) {
+      recyclerRef.current?.setState({dataList: dataList});
+      recyclerRef.current?.setState({
+        list: new DataProvider((r1, r2) => r1 !== r2).cloneWithRows(
+          recyclerRef.current?.state.dataList,
+        ),
+      });
+    }
+  }, []);
+
   // render item
   const rowRenderer = (
     _type: string | number,
@@ -54,8 +75,7 @@ const StudentsList = () => {
       index={index}
       item={data?.item}
       deleteStudent={deleteStudentFn}
-      updateStudent={updateStudent}
-      ref={SingleStudentRef}
+      onCompleteOpen={onCompleteOpen}
     />
   );
 

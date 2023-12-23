@@ -32,6 +32,18 @@ const styles = StyleSheet.create({
     fontSize: RFValue(15),
     color: colors.white,
   },
+  row: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  buttonTitle: {
+    fontSize: RFValue(14),
+    color: colors.black,
+    fontWeight: 'bold',
+  },
+  leftMargin: {
+    marginLeft: 10,
+  },
 });
 
 export default styles;

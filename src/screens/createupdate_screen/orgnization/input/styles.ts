@@ -1,6 +1,7 @@
 import {StyleSheet} from 'react-native';
 import ScreenRatio from '../../../../components/constants/ScreenRatio';
 import colors from '../../../../components/constants/colors';
+import {RFValue} from 'react-native-responsive-fontsize';
 
 const styles = StyleSheet.create({
   container: {
@@ -12,6 +13,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     padding: 10,
     marginVertical: 10,
+  },
+  errorText: {
+    fontSize: RFValue(12),
+    color: colors.red,
   },
 });
 export default styles;

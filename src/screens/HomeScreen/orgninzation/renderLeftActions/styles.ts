@@ -1,14 +1,12 @@
 import {StyleSheet} from 'react-native';
-import ScreenRatio from '../../../../components/constants/ScreenRatio';
 import colors from '../../../../components/constants/colors';
 
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
-    height: ScreenRatio.height / 20,
-    width: ScreenRatio.width / 5,
-    marginTop: 10,
+    height: '100%',
+    width: '25%',
   },
   buttonContainer: {
     height: 30,
